@@ -25,4 +25,8 @@ target_sources(csv
 
 set_target_properties(csv PROPERTIES LINKER_LANGUAGE CXX)
 target_link_libraries(csv PRIVATE Threads::Threads)
-target_include_directories(csv INTERFACE ../)
+
+set(_CSV_PUBLIC_INC_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
+target_include_directories(csv PUBLIC
+	$<BUILD_INTERFACE:${_CSV_PUBLIC_INC_DIR}>
+	$<INSTALL_INTERFACE:include>)
